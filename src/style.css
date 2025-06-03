@@ -1,0 +1,972 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top for longer content */
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: left;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.card h2 {
+    color: #34495e;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.card p {
+    color: #555;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+.composition-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+}
+
+.category-card { /* This is for Herd Composition Cards */
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.category-header {
+    padding: 12px 15px;
+    color: white;
+    text-align: center;
+    background-color: #4A90E2;
+}
+
+.category-header h3 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.category-body {
+    padding: 20px;
+}
+
+select { /* General select styling */
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+select:focus {
+    border-color: #4A90E2;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+
+.slider-container {
+    text-align: center;
+}
+
+.slider-value {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4A90E2;
+}
+
+.slider {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: #ddd;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity .15s ease-in-out;
+    border-radius: 4px;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #4A90E2;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #4A90E2;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 8px;
+}
+
+/* Animal Tags Section (Common Diet Practices Card) */
+#animalTagsSection {
+    margin-top: 30px;
+}
+
+/* Tab Navigation Styling */
+.tab-navigation {
+    display: flex;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: -2px; /* Overlap for seamless connection */
+}
+
+.tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    color: #555;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.tab-button.active {
+    color: #2c3e50;
+    font-weight: bold;
+    border-top: 2px solid #4A90E2;
+    border-left: 2px solid #4A90E2;
+    border-right: 2px solid #4A90E2;
+    border-bottom: 2px solid #ffffff; /* Connects to content */
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.tab-button:not(.active):hover {
+    color: #2c3e50;
+}
+
+.tab-content-area {
+    border: 2px solid #4A90E2;
+    border-top: none;
+    padding: 20px;
+    background-color: #ffffff;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* Diet Composition Section Styling (within Tabs) */
+.diet-composition-section {
+    padding: 0; /* Remove padding here, will be handled by sub-elements or tab-content-area */
+    text-align: left;
+}
+
+.diet-composition-section .subtitle { /* "Select a Common Diet Practice (CDP) as a Base" */
+    font-size: 1.1em;
+    color: #34495e;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.diet-composition-section p { /* General paragraphs within the section */
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.cdp-select { /* Dropdown for selecting CDP */
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 25px; /* Increased margin */
+    /* Inherits global select styles, additional ones if needed */
+}
+
+/* Container for all custom diet ingredients and categories */
+.custom-diet-ingredients {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #e0e0e0; /* Softer solid border */
+    background-color: #f9f9fa; /* Light background for this whole area */
+    border-radius: 6px;
+}
+
+.custom-diet-ingredients h5 { /* "Custom Diet Ingredients:" heading */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    color: #34495e;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dde;
+}
+
+/* Grid container for ingredient categories */
+.categories-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+  gap: 25px; /* Gap between category cards */
+}
+
+/* Individual category group/card within the diet section */
+.category-group {
+  background-color: #ffffff;
+  border: 1px solid #d7dce1;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+}
+
+.category-group h6 { /* Category title (e.g., "Forages") */
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #4A90E2; /* Consistent blue title */
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e7eaf0;
+}
+
+.category-group ul { /* List of ingredients within a category */
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+  flex-grow: 1; /* Pushes "Add Ingredient" button/form down */
+}
+
+.category-group li { /* Each ingredient item */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f2f5; /* Light separator */
+}
+.category-group li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.category-group li span { /* The ingredient name text */
+    flex-grow: 1;
+    margin-right: 10px;
+    word-break: break-word; /* Prevent long names from breaking layout */
+}
+
+/* Percentage input within an ingredient list item */
+.category-group li input[type="number"] {
+    width: 70px;
+    padding: 6px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    text-align: right;
+    margin-left: 5px; /* Keep space from '%' symbol if it's outside */
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+.category-group li input[type="number"]:focus {
+    border-color: #4A90E2;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Delete button for an ingredient */
+.category-group li .delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+    margin-left: 10px;
+}
+.category-group li .delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* "Add Ingredient to {Category}" button */
+.category-group > button:not(.add-ingredient-form button) {
+    background-color: #5dade2; /* Slightly different blue for secondary action */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.2s;
+    margin-top: auto; /* Pushes to bottom */
+    align-self: flex-start;
+}
+.category-group > button:not(.add-ingredient-form button):hover {
+    background-color: #4a90e2;
+}
+
+/* Form for adding a new ingredient within a category group */
+.category-group .add-ingredient-form {
+  margin-top: auto; /* Ensures it's at the bottom */
+  padding: 15px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  margin-top: 15px; /* Space above the form if list is short */
+}
+
+.add-ingredient-form div { /* Container for label + input in the form */
+  margin-bottom: 12px;
+}
+.add-ingredient-form div:last-child {
+  margin-bottom: 0; /* No margin for the last div (button container) */
+}
+
+.add-ingredient-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.9em;
+  color: #343a40;
+}
+
+/* Select and Input fields common styling within the add-ingredient-form */
+.add-ingredient-form select,
+.add-ingredient-form input[type="text"], /* If you add text inputs */
+.add-ingredient-form input[type="number"] {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.95em;
+    background-color: #fff; /* Ensure white background for inputs */
+}
+.add-ingredient-form select:focus,
+.add-ingredient-form input[type="text"]:focus,
+.add-ingredient-form input[type="number"]:focus {
+    border-color: #4A90E2;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25); /* Slightly stronger focus */
+}
+
+/* Buttons (Save, Cancel) inside the add-ingredient-form */
+.add-ingredient-form .form-actions { /* Optional wrapper for buttons if needed for layout */
+    text-align: right; /* Aligns buttons to the right */
+    margin-top: 15px;
+}
+
+.add-ingredient-form button {
+    padding: 9px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    border: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* Targeting Save button specifically (assuming it's the first button or you add a class) */
+.add-ingredient-form button:first-of-type, /* A common pattern if Save is first */
+.add-ingredient-form button.save-ingredient-button { /* Or add class="save-ingredient-button" */
+    background-color: #2ecc71; /* Green for save */
+    color: white;
+    margin-right: 8px;
+}
+.add-ingredient-form button:first-of-type:hover,
+.add-ingredient-form button.save-ingredient-button:hover {
+    background-color: #27ae60;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Targeting Cancel button specifically */
+.add-ingredient-form button:last-of-type, /* A common pattern if Cancel is last */
+.add-ingredient-form button.cancel-ingredient-button { /* Or add class="cancel-ingredient-button" */
+    background-color: #95a5a6; /* Grey for cancel */
+    color: #fff;
+}
+.add-ingredient-form button:last-of-type:hover,
+.add-ingredient-form button.cancel-ingredient-button:hover {
+    background-color: #7f8c8d;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.total-diet-percentage {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.1em; /* Default size */
+    color: #2c3e50; /* Default color */
+    transition: color 0.3s ease, font-size 0.3s ease; /* Smooth transition for changes */
+}
+
+.total-diet-percentage.warning-over100 {
+    color: #e74c3c; /* Red color for warning */
+    font-size: 1.3em; /* Increased font size for warning */
+    font-weight: bolder;
+}
+
+/* ... (all your existing styles up to .slider-labels) ... */
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 8px;
+}
+
+/* Styles for DMI input within CategoryCard (Herd Composition) */
+.category-body {
+    padding: 20px;
+    display: flex; /* Using flex to manage layout of children */
+    flex-direction: column; /* Stack children vertically */
+    gap: 15px; /* Consistent spacing between select, slider, and DMI input */
+}
+
+/* Adjust select margin if needed due to parent flex gap */
+.category-body select {
+    /* width: 100%; */ /* Already defined globally */
+    /* padding: 10px; */ /* Already defined globally */
+    margin-bottom: 0; /* Rely on parent gap for spacing */
+    /* border: 1px solid #ccc; */ /* Already defined globally */
+    /* border-radius: 4px; */ /* Already defined globally */
+    /* background-color: #f9f9f9; */ /* Already defined globally */
+    /* font-size: 1em; */ /* Already defined globally */
+    /* box-sizing: border-box; */ /* Already defined globally */
+}
+
+
+.dmi-input-container {
+    /* margin-top: 10px; */ /* Replaced by parent gap */
+    text-align: left;
+}
+
+.dmi-label {
+    display: block;
+    margin-bottom: 6px; /* Slightly reduced margin */
+    font-size: 0.9em; /* Consistent small label size */
+    font-weight: 500;
+    color: #333;
+}
+
+.dmi-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    background-color: #fff; /* Ensure input field background is white for clarity */
+}
+
+.dmi-input::placeholder { /* Style placeholder text */
+    color: #aaa;
+    font-style: italic;
+}
+
+.dmi-input:focus {
+    border-color: #4A90E2;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* For screen readers if you use aria-labelledby for sliders etc. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+
+/* Animal Tags Section (Common Diet Practices Card) */
+#animalTagsSection {
+    margin-top: 30px;
+}
+
+/* ... (rest of your existing styles for tabs, diet composition, etc.) ... */
+
+/* Styles for Pie Chart within Diet Composition */
+.diet-composition-chart-container {
+  margin-top: 25px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.diet-composition-chart-container h6 {
+  font-size: 1.3em;
+  color: #34495e;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.recharts-legend-item-text {
+  color: #495057 !important;
+}
+
+.recharts-tooltip-label {
+  color: #333 !important;
+}
+
+.total-diet-percentage {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.1em; 
+    color: #2c3e50; 
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.total-diet-percentage.warning-over100 {
+    color: #e74c3c;
+    font-size: 1.3em;
+    font-weight: bolder;
+}
+
+/* In your CSS file (e.g., App.css or a dedicated stylesheet) */
+
+/* ... (your existing styles) ... */
+
+.total-herd-percentage {
+    text-align: center;
+    margin-top: 25px; /* Increased top margin for better separation */
+    padding: 10px; /* Add some padding for better visual grouping */
+    font-weight: bold; /* Default bold */
+    font-size: 1.2em; /* Default size, slightly larger than before */
+    color: #2c3e50; /* Default color */
+    background-color: #f8f9fa; /* Light background to make it stand out a bit */
+    border-radius: 4px; /* Slightly rounded corners */
+    border: 1px solid transparent; /* Base for transition and state changes */
+    transition: color 0.3s ease, font-size 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+/* The .warning-over100 class can be reused if the desired effect is identical.
+   If you want different styling (e.g., different font size or exact color),
+   you can create a specific class like .total-herd-percentage.warning-over100 */
+
+.total-herd-percentage.warning-over100 { /* Targets elements with both classes */
+    color: #e74c3c; /* Red color for warning */
+    font-size: 1.4em; /* Increased font size for warning */
+    font-weight: bolder; /* Even bolder */
+    background-color: #fbeeed; /* Light red background for warning */
+    border-color: #f5c6cb; /* Reddish border for warning */
+}
+
+
+/* This was for the Diet Composition total, ensure it's distinct if needed,
+   or consolidate if the warning style is always the same */
+.total-diet-percentage {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #2c3e50;
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.total-diet-percentage.warning-over100 {
+    color: #e74c3c;
+    font-size: 1.3em;
+    font-weight: bolder;
+}
+
+/* In your CSS file */
+
+/* ... existing styles ... */
+
+.category-group.collapsible .category-group-title {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0; /* Adjust padding as needed, might be handled by h6 already */
+  user-select: none; /* Prevent text selection on click */
+}
+
+.category-group.collapsible .category-group-title:hover {
+  /* background-color: #f0f0f0; Optional hover effect on title */
+}
+
+.expansion-indicator {
+  font-size: 0.9em; /* Adjust size of arrow */
+  margin-left: 10px;
+  transition: transform 0.2s ease-in-out; /* Smooth arrow rotation */
+}
+
+.expansion-indicator.expanded {
+  /* transform: rotate(90deg); /* If using a right-pointing arrow initially */
+}
+
+.category-group-content {
+  /* Styles for the content area that expands/collapses */
+  /* Animation can be added here for smoother transitions, e.g., max-height */
+  overflow: hidden; /* Important for max-height transition if used */
+  /* For a simple show/hide, no extra CSS needed beyond conditional rendering in React */
+}
+
+/* Style for the specific "Add Ingredient to {Category}" button */
+.category-group .add-ingredient-to-category-button {
+    background-color: #5dade2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.2s;
+    margin-top: auto; /* Pushes to bottom if inside a flex container */
+    align-self: flex-start; /* Align to start if parent is flex */
+    display: inline-block; /* Or block if it should take full width */
+    margin-top: 15px; /* Space above the button */
+}
+.category-group .add-ingredient-to-category-button:hover {
+    background-color: #4a90e2;
+}
+
+/* Adjust input style in list items if it was too specific to the non-collapsible version */
+.category-group ul li input[type="number"] {
+    width: 70px;
+    padding: 6px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    text-align: right;
+    margin-left: 5px;
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+.category-group ul li input[type="number"]:focus {
+    border-color: #4A90E2;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* In your style.css or App.css */
+
+.dynamic-composition-grid {
+  display: flex; /* Enables flexbox */
+  flex-wrap: wrap; /* Allows items to wrap to the next line if they don't fit */
+  gap: 15px; /* Space between the group entries */
+  /* align-items: flex-start; */ /* Aligns items to the start of the cross axis (top if row direction) */
+  /* justify-content: flex-start; */ /* Aligns items to the start of the main axis */
+}
+
+.animal-group-entry {
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  margin-bottom: 0; /* Remove bottom margin if using gap for spacing */
+  border-radius: 8px;
+  background: #f9f9f9;
+  min-width: 300px; /* Example: Set a minimum width for each card */
+  flex: 1 1 300px; /* Flex grow, shrink, basis. Allows them to grow and shrink but start at ~300px */
+  /* Or, if you want them to have a fixed width and wrap: */
+  /* flex: 0 0 320px; */ /* No grow, no shrink, basis of 320px */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Optional: ensure CategoryCard itself doesn't take full width if not desired */
+.animal-group-entry .category-card {
+  /* You might not need this if CategoryCard is already well-behaved */
+}
+
+/* Ensure inputs and selects within the group entry behave well */
+.animal-group-entry input[type="text"],
+.animal-group-entry select {
+  width: calc(100% - 10px); /* Example: full width minus some padding */
+  margin-bottom: 10px;
+}
+.animal-group-entry .dmi-input-container input.dmi-input {
+    width: auto; /* Let DMI input be its natural size or a smaller fixed width */
+}
+
+/* In your style.css or equivalent */
+
+/* Styles for the container of each parameter input (label + input field) */
+.parameter-input-container {
+  margin-top: 10px; /* Or your desired spacing */
+  display: flex;
+  flex-direction: column; /* Stack label above input */
+  align-items: flex-start; /* Align label and input to the left */
+}
+
+/* Styles for the labels of parameter inputs */
+.parameter-label {
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+/* Styles for the text input fields (DMI, Milk Yield, ADG) */
+.parameter-input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  width: 150px; /* Adjust width as needed, or use percentages */
+  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+}
+
+.parameter-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* You might also want styles for other elements within CategoryCard */
+.category-card .category-body select {
+  width: 100%; /* Make select full width of its container if desired */
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.slider-container {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+/* In your style.css or DietCompositionSection specific CSS */
+
+.ingredient-name-clickable {
+  cursor: pointer;
+  color: #00529B; /* Make it look like a link */
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  margin-right: 5px; /* Space before info icon if you add one */
+}
+.ingredient-name-clickable:hover {
+  color: #003d73;
+}
+
+/* Modal Styles */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  min-width: 300px;
+  max-width: 500px;
+  max-height: 80vh; /* Max height with scrolling */
+  overflow-y: auto; /* Enable scrolling for long content */
+}
+
+.modal-content h4 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.modal-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.modal-content ul li {
+  padding: 5px 0;
+  font-size: 0.95em;
+}
+.modal-content ul li strong {
+  color: #555;
+}
+
+.modal-close-button {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto; /* Align to the right */
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.modal-close-button:hover {
+  background-color: #0056b3;
+}
+
+/* In your style.css or equivalent */
+
+.ingredient-name-clickable {
+  cursor: pointer;
+  color: #00529B; /* Main color for clickability */
+  /* text-decoration: underline; */ /* OPTIONAL: Keep a solid underline if desired */
+  /* text-decoration-style: dashed; */ /* REMOVE THIS LINE or comment it out */
+  display: inline-flex; /* To align name and icon nicely */
+  align-items: center; /* Vertically align name and icon */
+}
+
+.ingredient-name-clickable:hover {
+  color: #003d73; /* Darker color on hover */
+  text-decoration: underline; /* OPTIONAL: Add underline on hover only */
+}
+
+.ingredient-name-clickable span[role="img"] { /* Styling for the info icon */
+  margin-left: 5px;
+  font-size: 0.9em; /* Adjust icon size if needed */
+  /* color: #007bff; */ /* Already set inline, or can be moved here */
+}
+
+
+/* Styles for Nutrient Edit Modal */
+.nutrient-edit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.nutrient-edit-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.nutrient-edit-item label {
+  font-size: 0.85em;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.nutrient-edit-item .nutrient-values {
+  display: flex;
+  align-items: center;
+}
+
+.nutrient-edit-item input[type="text"] {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  width: 80px; /* Adjust as needed */
+  text-align: right;
+}
+
+.nutrient-edit-item .base-value {
+  font-size: 0.8em;
+  color: #777;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.save-changes-button {
+  padding: 8px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.save-changes-button:hover {
+  background-color: #218838;
+}
+
+/* In style.css */
+.nutrient-profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.nutrient-profile-table th,
+.nutrient-profile-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.nutrient-profile-table th {
+  background-color: #f2f2f2;
+}
+
+.nutrient-profile-table td:nth-child(2) { /* Value column */
+  text-align: right;
+}
+
+.nutrient-profile-title {
+    margin-bottom: 15px; /* Add some space below the title */
+}
+
+/* In your main CSS file (e.g., App.css or style.css) */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
